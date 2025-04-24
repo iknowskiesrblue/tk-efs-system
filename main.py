@@ -63,19 +63,19 @@ class FlightStripApp:
             json.dump(data, f, indent=4)
 
     def load_strips(self):
-    if os.path.exists(DATA_FILE):
-        try:
-            with open(DATA_FILE, "r") as f:
-                content = f.read().strip()
-                if not content:
-                    return  # file is empty; nothing to load
-                data = json.loads(content)
-                for item in data:
-                    strip = FlightStrip(**item)
-                    self.strips.append(strip)
-                    self.render_strip(strip)
-        except json.JSONDecodeError:
-            messagebox.showwarning("Warning", "data.json is corrupted. Starting fresh.")
+        if os.path.exists(DATA_FILE):
+            try:
+                with open(DATA_FILE, "r") as f:
+                    content = f.read().strip()
+                    if not content:
+                        return  # file is empty; nothing to load
+                    data = json.loads(content)
+                    for item in data:
+                        strip = FlightStrip(**item)
+                        self.strips.append(strip)
+                        self.render_strip(strip)
+            except json.JSONDecodeError:
+                messagebox.showwarning("Warning", "data.json is corrupted. Starting fresh.")
 
 
 
